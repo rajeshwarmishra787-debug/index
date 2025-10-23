@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajeshwar Mishra - Frontend Developer & Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Copyright Protection */
+        body::before {
+            content: "© 2024 Rajeshwar Mishra. All Rights Reserved.";
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            font-size: 8px;
+            color: #ccc;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f8f9fa;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --star-color: #ffffff;
+        }
+        .dark-mode {
+            --primary-color: #4da8da;
+            --secondary-color: #1a2530;
+            --accent-color: #ff6b6b;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --star-color: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        #stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            background-color: var(--star-color);
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            padding: 20px 0;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 5px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 20px var(--shadow);
+            pointer-events: none;
+        }
+        .university-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px var(--shadow);
+        }
+        .university-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .skill-category {
+            margin-top: 50px;
+        }
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .project-info {
+            padding: 20px;
+        }
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 80px;
+            position: relative;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        .social-icon:hover {
+            color: var(--primary-color);
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .protection-notice {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10000;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: left 0.3s;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="stars-container"></div>
+    <div class="protection-notice" id="protectionNotice">
+        <h3>⚠️ Protected Content</h3>
+        <p>This portfolio is the intellectual property of Rajeshwar Mishra</p>
+        <p>Unauthorized copying is prohibited</p>
+    </div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Rajeshwar Mishra</div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Rajeshwar Mishra</h1>
+            <p>Frontend Developer, App Developer & Creative Designer with expertise in banner design and video editing.</p>
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="#contact" class="btn btn-accent">Hire Me</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Rajeshwar Mishra, a passionate frontend developer, app developer, and creative designer currently pursuing my education at Pandit Shambhunath Shukla University.</p>
+                    <p>With a strong foundation in modern web technologies, I specialize in turning ideas into reality through clean, efficient code and intuitive user interfaces. Beyond coding, I have a keen eye for design and create engaging banners, thumbnails, and video content.</p>
+                    <p>I'm constantly learning and adapting to new technologies to stay at the forefront of web development, app creation, and digital design trends.</p>
+                    <div class="university-info">
+                        <h3>Education</h3>
+                        <p><strong>Pandit Shambhunath Shukla University</strong></p>
+                        <p>Currently pursuing my degree while developing my skills in web development, app development, and digital design.</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="raj.jpg" alt="Rajeshwar Mishra" class="profile-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skill-category">
+                <h3 class="category-title">Development Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <h3>HTML5</h3>
+                        <p>Semantic markup, accessibility, and modern HTML features.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt skill-icon"></i>
+                        <h3>CSS3</h3>
+                        <p>Responsive design, animations, Flexbox, Grid, and CSS frameworks.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js skill-icon"></i>
+                        <h3>JavaScript</h3>
+                        <p>ES6+, DOM manipulation, APIs, and modern JavaScript frameworks.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react skill-icon"></i>
+                        <h3>React</h3>
+                        <p>Component-based architecture, hooks, state management, and React Native.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-android skill-icon"></i>
+                        <h3>Android Development</h3>
+                        <p>Native Android apps with Java/Kotlin and Material Design principles.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-mobile-alt skill-icon"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Creating websites that work perfectly on all devices and screen sizes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3 class="category-title">Design & Creative Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fas fa-paint-brush skill-icon"></i>
+                        <h3>Banner Design</h3>
+                        <p>Creating eye-catching banners for websites, social media, and advertising.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-image skill-icon"></i>
+                        <h3>Thumbnail Design</h3>
+                        <p>Designing engaging thumbnails that increase click-through rates.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-video skill-icon"></i>
+                        <h3>Video Editing</h3>
+                        <p>Professional video editing, color grading, and post-production.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-photo-video skill-icon"></i>
+                        <h3>Motion Graphics</h3>
+                        <p>Creating animated graphics and visual effects for videos.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-pen-fancy skill-icon"></i>
+                        <h3>Graphic Design</h3>
+                        <p>Logo design, branding, and visual identity creation.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-film skill-icon"></i>
+                        <h3>Post-Production</h3>
+                        <p>Audio mixing, color correction, and final video polishing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img" style="background-color: #3498db; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-shopping-cart" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">E-Commerce App</h3>
+                        <p>A fully responsive e-commerce application with product filtering, cart functionality, and secure checkout.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-color: #2ecc71; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-tasks" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p>A productivity app for managing daily tasks with drag-and-drop functionality and deadline tracking.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-color: #e74c3c; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-utensils" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Food Delivery App</h3>
+                        <p>A mobile app for food ordering with real-time tracking, restaurant listings, and payment integration.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-color: #9b59b6; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-video" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">YouTube Channel Design</h3>
+                        <p>Complete branding package including banner, thumbnails, and video intro for a YouTube channel.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-color: #f39c12; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-ad" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Social Media Ad Campaign</h3>
+                        <p>Series of banner ads and video content for a social media marketing campaign.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-color: #1abc9c; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fas fa-film" style="font-size: 50px;"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Corporate Video Production</h3>
+                        <p>End-to-end video production including shooting, editing, and post-production for a corporate client.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <span>rajeshwarmishra787@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <span>+91 8989996656</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <span>Pandit Shambhunath Shukla University, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin social-icon"></i></a>
+                <a href="#"><i class="fab fa-github social-icon"></i></a>
+                <a href="#"><i class="fab fa-youtube social-icon"></i></a>
+                <a href="#"><i class="fab fa-instagram social-icon"></i></a>
+                <a href="#"><i class="fab fa-behance social-icon"></i></a>
+            </div>
+            <p>&copy; 2024 Rajeshwar Mishra. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px;">This portfolio is protected against unauthorized copying.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Anti-Copy Protection
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showProtectionNotice();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // Block F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+                (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                showProtectionNotice();
+            }
+        });
+
+        // Disable text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Protection notice
+        function showProtectionNotice() {
+            const notice = document.getElementById('protectionNotice');
+            notice.style.display = 'block';
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, 3000);
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Starry Background
+        const starsContainer = document.getElementById('stars-container');
+        function createStars() {
+            const starCount = 100;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                const duration = Math.random() * 10 + 5;
+                star.style.animationDuration = `${duration}s`;
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Page load protection
+        window.addEventListener('load', function() {
+            document.body.style.visibility = 'visible';
+        });
+        document.body.style.visibility = 'hidden';
+    </script>
+</body>
+</html>
